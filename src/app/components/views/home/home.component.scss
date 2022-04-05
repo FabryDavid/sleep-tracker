@@ -1,0 +1,83 @@
+@import "src/assets/scss/variables";
+
+.hero {
+  background-image: url("/assets/images/home/sky-background.png");
+  width: 100%;
+  height: 929px;
+  padding-top: 150px;
+  margin-bottom: 100px;
+
+
+  h1 {
+    font-weight: 700;
+    font-size: 60px;
+  }
+
+  .hero-text {
+    font-weight: 300;
+    font-size: 40px;
+  }
+
+  a {
+    font-size: 18px;
+    background-color: $accent;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 35px;
+    line-height: 23px;
+    border-radius: 15px;
+    margin-top: 75px;
+    transition: all 0.15s;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+
+    div{
+      position: relative;
+      z-index: 1;
+    }
+
+    &:after {
+      content: ' ';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      background-color: $primary-lighten;
+      width: 0;
+      aspect-ratio: 1/1;
+      transform: translate(-50%,50%);
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+
+    &:hover {
+      &:after {
+        width: 150%;
+      }
+    }
+  }
+}
+
+.home-features {
+  img {
+    margin-bottom: 40px;
+  }
+
+  .features-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 26px;
+  }
+
+  .features-info {
+    font-size: 18px;
+    font-weight: 500;
+    opacity: .7;
+  }
+}
