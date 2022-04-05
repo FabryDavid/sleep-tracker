@@ -9,6 +9,16 @@
     background-color: $primary-lighten;
     border-radius: 15px;
     padding-bottom: 200px !important;
+    padding-top: 35px !important;
+
+    h2 {
+      font-weight: bold;
+      font-size: 40px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(-50%);
+    }
 
     .tower-image {
       position: absolute;
