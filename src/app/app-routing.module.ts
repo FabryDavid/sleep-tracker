@@ -1,14 +1,38 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {Injectable, NgModule} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./components/views/home/home.component";
+import {HomeLoggedInComponent} from "./components/views/home-logged-in/home-logged-in.component";
+import {Observable} from "rxjs";
+import {LocalStorageWorker} from "./classes/local-storage-worker.class";
+import {LoginComponent} from "./components/views/login/login.component";
+
+
+@Injectable()
+export class AccessGuard implements CanActivate {
+  constructor(private router: Router) {
+  }
+
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    const requiresLogin = route.data.requiresLogin || false;
+    if (requiresLogin && !LocalStorageWorker.isLoggedIn()) {
+      this.router.navigate(['login']);
+    }
+
+    return true
+  }
+}
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: HomeComponent, canActivate: [AccessGuard]},
+  {path: 'login', component: LoginComponent, canActivate: [AccessGuard]},
+  {path: 'home', component: HomeLoggedInComponent, data: {requiresLogin: true}, canActivate: [AccessGuard]},
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AccessGuard],
 })
 export class AppRoutingModule {
 }
