@@ -5,6 +5,7 @@ import {HomeLoggedInComponent} from "./components/views/home-logged-in/home-logg
 import {Observable} from "rxjs";
 import {LocalStorageWorker} from "./classes/local-storage-worker.class";
 import {LoginComponent} from "./components/views/login/login.component";
+import {RegisterComponent} from "./components/views/register/register.component";
 
 
 @Injectable()
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AccessGuard]},
   {path: 'login', component: LoginComponent, canActivate: [AccessGuard]},
   {path: 'home', component: HomeLoggedInComponent, data: {requiresLogin: true}, canActivate: [AccessGuard]},
+  {path: 'register', component: RegisterComponent, canActivate: [AccessGuard]},
 ];
 
 

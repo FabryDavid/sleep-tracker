@@ -14,6 +14,8 @@ import {LoginComponent} from './components/views/login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {RegisterComponent} from './components/views/register/register.component';
+import {PasswordStrength} from "./pipes/password-strength.Pipe";
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import {MatInputModule} from "@angular/material/input";
     HomeComponent,
     HomeLoggedInComponent,
     LoginComponent,
+    RegisterComponent,
+    PasswordStrength
   ],
   imports: [
     BrowserModule,

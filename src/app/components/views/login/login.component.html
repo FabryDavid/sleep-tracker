@@ -1,11 +1,11 @@
-<div class="container main-top-margin login">
+<div class="container main-top-margin form-panel">
   <ng-form class="row justify-content-center">
-    <div class="col-6 login-form p-4 position-relative">
+    <div class="col-6 form p-4 position-relative">
       <h2>Login</h2>
 
       <img class="tower-image" src="assets/images/foreground.png" alt="Clouds">
 
-      <mat-form-field class="w-100" appearance="outline">
+      <mat-form-field class="w-100" color="accent" appearance="outline">
         <mat-label>Email</mat-label>
         <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher">
         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">

@@ -1,0 +1,21 @@
+@import "src/assets/scss/variables";
+
+.password-strength-meter {
+  height: 20px;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.password-strength-weak {
+  background-color: $accent;
+}
+
+.password-strength-medium {
+  background-color: $warning;
+  color: black;
+}
+
+.password-strength-strong {
+  background-color: $success;
+  color: white;
+}
