@@ -16,6 +16,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {RegisterComponent} from './components/views/register/register.component';
 import {PasswordStrength} from "./pipes/password-strength.Pipe";
+import axios from 'axios'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import {PasswordStrength} from "./pipes/password-strength.Pipe";
     HomeLoggedInComponent,
     LoginComponent,
     RegisterComponent,
-    PasswordStrength
+    PasswordStrength,
   ],
   imports: [
     BrowserModule,
@@ -43,4 +44,7 @@ import {PasswordStrength} from "./pipes/password-strength.Pipe";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor() {
+    axios.defaults.baseURL = "http://localhost:3000"
+  }
 }

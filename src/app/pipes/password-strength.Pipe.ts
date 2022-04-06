@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {IPasswordStrength} from "../interface/ipassword-strength.interface";
-import {PasswordStrength as PS} from "../classes/password-strength.Class";
+import {IPasswordStrength} from "../interfaces/ipassword-strength.interface";
+import {PasswordStrength as PS} from "../classes/password-strength/password-strength.Class";
 
 @Pipe({name: 'passwordStrength'})
 export class PasswordStrength implements PipeTransform {

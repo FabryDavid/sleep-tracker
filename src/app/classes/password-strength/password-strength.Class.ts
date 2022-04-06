@@ -1,4 +1,4 @@
-import {IPasswordStrength} from "../interface/ipassword-strength.interface";
+import {IPasswordStrength} from "../../interfaces/ipassword-strength.interface";
 
 export class PasswordStrength implements IPasswordStrength {
   constructor(public matchedValue: string[]) {

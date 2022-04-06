@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterModule, Routes} from 
 import {HomeComponent} from "./components/views/home/home.component";
 import {HomeLoggedInComponent} from "./components/views/home-logged-in/home-logged-in.component";
 import {Observable} from "rxjs";
-import {LocalStorageWorker} from "./classes/local-storage-worker.class";
+import {LocalStorageWorker} from "./classes/localstorage-worker/local-storage-worker.class";
 import {LoginComponent} from "./components/views/login/login.component";
 import {RegisterComponent} from "./components/views/register/register.component";
 

@@ -1,5 +1,5 @@
 <div class="container main-top-margin form-panel">
-  <ng-form class="row justify-content-center">
+  <ng-form class="row justify-content-center" (ngSubmit)="onSubmit()">
     <div class="col-6 form p-4 position-relative">
       <h2>Register</h2>
 
@@ -9,6 +9,8 @@
         <mat-label>Email</mat-label>
         <input
           type="email"
+          [(ngModel)]="user.email"
+          name="email"
           matInput
           [formControl]="emailFormControl"
           [errorStateMatcher]="matcher"
@@ -25,7 +27,7 @@
         <mat-label>Password</mat-label>
         <input
           type="password"
-          [(ngModel)]="password"
+          [(ngModel)]="user.password"
           name="password"
           matInput
           [formControl]="passwordFormControl"
@@ -42,15 +44,16 @@
       <b>Strength</b>
       <div class="password-strength-meter"
            [ngClass]="{
-           'password-strength-weak':(password|passwordStrength).matchedValue.length<3,
-           'password-strength-medium':(password|passwordStrength).matchedValue.length>=3,
-           'password-strength-strong':(password|passwordStrength).matchedValue.length>=4
+           'password-strength-weak':(user.password|passwordStrength).matchedValue.length<3,
+           'password-strength-medium':(user.password|passwordStrength).matchedValue.length>=3,
+           'password-strength-strong':(user.password|passwordStrength).matchedValue.length>=4
            }"
-           [style]="'width:'+((password|passwordStrength).matchedValue.length/5)*100+'%'">
-        {{(password|passwordStrength).getStrengthString()}}
+           [style]="'width:'+((user.password|passwordStrength).matchedValue.length/5)*100+'%'">
+        {{(user.password|passwordStrength).getStrengthString()}}
       </div>
 
       <button
+        (click)="onSubmit()"
         [disabled]='emailFormControl.invalid||passwordFormControl.invalid'
         class='mt-4 submit-button'
       >
