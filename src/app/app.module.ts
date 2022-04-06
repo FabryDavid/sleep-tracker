@@ -16,7 +16,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {RegisterComponent} from './components/views/register/register.component';
 import {PasswordStrength} from "./pipes/password-strength.Pipe";
-import axios from 'axios'
+import axios from 'axios';
+import { NotFoundComponent } from './components/views/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import axios from 'axios'
     LoginComponent,
     RegisterComponent,
     PasswordStrength,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
