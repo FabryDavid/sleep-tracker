@@ -20,7 +20,7 @@ export async function registerUser(user: IUser): Promise<null | IUser> {
 
 export async function getUserByEmail(email: string): Promise<null | IUser[]> {
   let data;
-  await axios.get(`users`).then((response) => {
+  await axios.get(`users?email=${email}`).then((response) => {
     if (response.status === 200) {
       data = response.data
     }

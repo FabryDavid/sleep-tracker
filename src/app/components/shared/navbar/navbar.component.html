@@ -5,11 +5,15 @@
 
   <span class="navbar-spacer"></span>
 
-  <a href="/login" class="navbar-button me-4">
+  <a *ngIf="!userLoggedIn" href="/login" class="navbar-button me-4">
     Login
   </a>
 
-  <a href="/register" class="navbar-button">
+  <a *ngIf="!userLoggedIn" href="/register" class="navbar-button-primary">
     Register
   </a>
+
+  <button *ngIf="userLoggedIn" class="navbar-button me-4" (click)="logout()">
+    Logout
+  </button>
 </mat-toolbar>

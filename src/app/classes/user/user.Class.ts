@@ -10,7 +10,5 @@ export class User implements IUser {
     if (!this.id) {
       this.id = uuidv4()
     }
-    console.log('this.id')
-    console.log(this.id)
   }
 }

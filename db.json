@@ -2,8 +2,13 @@
   "users": [
     {
       "email": "fdavid1017@gmail.com",
-      "password": "       console.log(response)",
+      "password": "12345678",
       "id": "0a640e5b-cdfc-4782-b4be-b241d3c530c1"
+    },
+    {
+      "email": "sonic101999@gmail.com",
+      "password": "returnreturn",
+      "id": "fb48dc11-4304-42b7-85b7-938f5577efe0"
     }
   ]
 }

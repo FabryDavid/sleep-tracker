@@ -7,7 +7,14 @@
 
       <mat-form-field class="w-100" color="accent" appearance="outline">
         <mat-label>Email</mat-label>
-        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+        <input
+          type="email"
+          matInput
+          [formControl]="emailFormControl"
+          [errorStateMatcher]="matcher"
+          [(ngModel)]="user.email"
+          name="email"
+        >
         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
           Please enter a valid email address
         </mat-error>
@@ -18,7 +25,14 @@
 
       <mat-form-field class="w-100 mt-3" appearance="outline">
         <mat-label>Password</mat-label>
-        <input type="email" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
+        <input
+          type="password"
+          matInput
+          [formControl]="passwordFormControl"
+          [errorStateMatcher]="matcher"
+          [(ngModel)]="user.password"
+          name="password"
+        >
         <mat-error *ngIf="passwordFormControl.hasError('required')">
           Password is <strong>required</strong>
         </mat-error>
@@ -27,6 +41,7 @@
       <button
         [disabled]='emailFormControl.invalid||passwordFormControl.invalid'
         class='mt-3 submit-button'
+        (click)="onSubmit()"
       >
         <div>Login</div>
       </button>

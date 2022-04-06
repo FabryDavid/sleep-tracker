@@ -1,5 +1,6 @@
 import {getUserByEmail} from "../../services/userService";
 import {IUser} from "../../interfaces/iuser.Interface";
+import {LoginService} from "../login-service/login-service.Class";
 
 export abstract class LocalStorageWorker {
   static loggedInUserKey = "loggedInUserId"
@@ -24,6 +25,13 @@ export abstract class LocalStorageWorker {
         }
       }
     })
+
+    LoginService.triggerEvent(loginSuccess)
     return loginSuccess
+  }
+
+  static logoutUser() {
+    localStorage.setItem(this.loggedInUserKey, "")
+    LoginService.logOutUser()
   }
 }
