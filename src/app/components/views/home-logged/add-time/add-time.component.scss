@@ -1,0 +1,7 @@
+@import "src/assets/scss/variables";
+@import "src/assets/scss/mixins";
+
+.save-button {
+  @include button;
+  margin-top: 20px;
+}

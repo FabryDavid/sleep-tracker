@@ -18,6 +18,7 @@
   overflow: hidden;
   position: relative;
   outline: none;
+  border: 2px solid $accent;
 
   &:disabled {
     opacity: 0.65;

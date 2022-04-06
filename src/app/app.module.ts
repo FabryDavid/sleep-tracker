@@ -9,7 +9,7 @@ import {NavbarComponent} from './components/shared/navbar/navbar.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {HomeComponent} from './components/views/home/home.component';
-import {HomeLoggedInComponent} from './components/views/home-logged-in/home-logged-in.component';
+import {HomeLoggedInComponent} from './components/views/home-logged/home-logged-in/home-logged-in.component';
 import {LoginComponent} from './components/views/login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -17,7 +17,9 @@ import {MatInputModule} from "@angular/material/input";
 import {RegisterComponent} from './components/views/register/register.component';
 import {PasswordStrength} from "./pipes/password-strength.Pipe";
 import axios from 'axios';
-import { NotFoundComponent } from './components/views/not-found/not-found.component';
+import {NotFoundComponent} from './components/views/not-found/not-found.component';
+import {TimerComponent} from './components/views/home-logged/timer/timer.component';
+import { AddTimeComponent } from './components/views/home-logged/add-time/add-time.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { NotFoundComponent } from './components/views/not-found/not-found.compon
     RegisterComponent,
     PasswordStrength,
     NotFoundComponent,
+    TimerComponent,
+    AddTimeComponent,
   ],
   imports: [
     BrowserModule,

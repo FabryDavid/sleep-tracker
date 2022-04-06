@@ -1,7 +1,7 @@
 import {Injectable, NgModule} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./components/views/home/home.component";
-import {HomeLoggedInComponent} from "./components/views/home-logged-in/home-logged-in.component";
+import {HomeLoggedInComponent} from "./components/views/home-logged/home-logged-in/home-logged-in.component";
 import {Observable} from "rxjs";
 import {LocalStorageWorker} from "./classes/localstorage-worker/local-storage-worker.class";
 import {LoginComponent} from "./components/views/login/login.component";

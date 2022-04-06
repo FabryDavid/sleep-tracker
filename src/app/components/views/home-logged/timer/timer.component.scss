@@ -1,0 +1,52 @@
+@import "src/assets/scss/variables";
+@import "src/assets/scss/mixins";
+
+.timer {
+  background-color: $primary-lighten;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  overflow: hidden;
+
+  .timer-icon {
+    transform: scale(5) translate(5%, 15%);
+    opacity: 0.7;
+    margin-right: 75px;
+  }
+
+  .timer-text {
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  button {
+    @include button;
+    margin: 0;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .timer-value {
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70px;
+    aspect-ratio: 1/1;
+
+    .value {
+      font-weight: bold;
+      font-size: 25px;
+    }
+
+    .text {
+      font-size: 13px;
+    }
+  }
+}

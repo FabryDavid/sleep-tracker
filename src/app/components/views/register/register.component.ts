@@ -19,7 +19,6 @@ export class RegisterComponent implements OnInit {
   passwordFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
   matcher = new MyErrorStateMatcher();
 
-
   constructor(
     private router: Router
   ) {

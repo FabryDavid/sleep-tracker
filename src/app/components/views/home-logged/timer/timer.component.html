@@ -1,0 +1,58 @@
+<div class="timer p-3" [ngClass]="{'timer-started':timerStarted}">
+  <mat-icon class="timer-icon">timer</mat-icon>
+
+  <div class="">
+    <div class="timer-text">
+      <h2 *ngIf="timerStarted; else stopText">
+        Stop sleep timer
+      </h2>
+      <ng-template #stopText>
+        Start sleep timer
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="me-5 d-flex align-items-center">
+    <div class="timer-value mx-2">
+      <div class="value">
+        {{timeElapsed.days}}
+      </div>
+      <div class="text">
+        Day
+      </div>
+    </div>
+    <div class="timer-value mx-2">
+      <div class="value">
+        {{timeElapsed.hours}}
+      </div>
+      <div class="text">
+        Hour
+      </div>
+    </div>
+    <div class="timer-value mx-2">
+      <div class="value">
+        {{timeElapsed.minutes}}
+      </div>
+      <div class="text">
+        Minute
+      </div>
+    </div>
+    <div class="timer-value mx-2">
+      <div class="value">
+        {{timeElapsed.seconds}}
+      </div>
+      <div class="text">
+        Seconds
+      </div>
+    </div>
+  </div>
+
+  <button (click)="timerStarted ? stopTimer() : startTimer()">
+    <div>
+      <div *ngIf="timerStarted; else stop">Stop</div>
+      <ng-template #stop>Start</ng-template>
+    </div>
+  </button>
+</div>

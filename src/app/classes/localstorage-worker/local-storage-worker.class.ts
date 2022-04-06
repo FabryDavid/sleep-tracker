@@ -5,6 +5,7 @@ import {IncorrectPasswordException} from "../../exceptions/incorrect-password/in
 
 export abstract class LocalStorageWorker {
   static loggedInUserKey = "loggedInUserId"
+  static timerKey = "timerStartTime"
 
   public static getCurrentUserId(): string | null {
     return localStorage.getItem(this.loggedInUserKey)
@@ -38,5 +39,32 @@ export abstract class LocalStorageWorker {
   static logoutUser() {
     localStorage.setItem(this.loggedInUserKey, "")
     LoginService.logOutUser()
+  }
+
+  public static startTimer(): Date {
+    const time = new Date()
+    localStorage.setItem(this.timerKey, time.getTime().toString())
+    return time
+  }
+
+  public static getTimer(): Date | null {
+    const time = localStorage.getItem(this.timerKey)
+
+    if (time) {
+      return new Date(parseInt(time))
+    }
+
+    return null
+  }
+
+  public static stopTimer(): Date | null {
+    const time = localStorage.getItem(this.timerKey)
+    localStorage.setItem(this.timerKey, '')
+
+    if (time) {
+      return new Date(parseInt(time))
+    }
+
+    return null
   }
 }
