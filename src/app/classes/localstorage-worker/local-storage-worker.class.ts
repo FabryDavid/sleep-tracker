@@ -1,6 +1,7 @@
 import {getUserByEmail} from "../../services/userService";
 import {IUser} from "../../interfaces/iuser.Interface";
 import {LoginService} from "../login-service/login-service.Class";
+import {IncorrectPasswordException} from "../../exceptions/incorrect-password/incorrect-password-exception.Class";
 
 export abstract class LocalStorageWorker {
   static loggedInUserKey = "loggedInUserId"
@@ -25,6 +26,10 @@ export abstract class LocalStorageWorker {
         }
       }
     })
+
+    if (!loginSuccess) {
+      throw new IncorrectPasswordException("Incorrect password or email")
+    }
 
     LoginService.triggerEvent(loginSuccess)
     return loginSuccess

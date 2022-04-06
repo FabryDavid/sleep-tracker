@@ -1,11 +1,12 @@
 import {IUser} from "../interfaces/iuser.Interface";
 import axios from 'axios'
+import {AlreadyRegisteredException} from "../exceptions/already-registered/already-registered-exception.Class";
 
 export async function registerUser(user: IUser): Promise<null | IUser> {
   await getUserByEmail(user.email).then((response) => {
     if (response) {
       if (response.length > 0) {
-        throw new Error('User already registered with this email')
+        throw new AlreadyRegisteredException('User already registered with this email')
       }
     }
   })

@@ -19,6 +19,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent implements OnInit {
   public user = new User('', '')
+  public incorrectPassword = false
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('', [Validators.required]);
@@ -36,6 +37,10 @@ export class LoginComponent implements OnInit {
     LocalStorageWorker.loginUser(this.user).then((response) => {
       if (response) {
         this.router.navigate(['/home'])
+      }
+    }).catch((e: Error) => {
+      if (e.name === "IncorrectPasswordError") {
+        this.incorrectPassword = true
       }
     })
   }

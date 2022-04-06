@@ -12,7 +12,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  public user = new User('', '' )
+  public user = new User('', '')
+  public alreadyRegistered = false
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
@@ -31,10 +32,14 @@ export class RegisterComponent implements OnInit {
     registerUser(this.user).then((response) => {
       if (response) {
         LocalStorageWorker.loginUser(response).then((response) => {
-          if(response){
+          if (response) {
             this.router.navigate(['/home'])
           }
         })
+      }
+    }).catch((e: Error) => {
+      if (e.name === "AlreadyRegisteredError") {
+        this.alreadyRegistered = true
       }
     })
   }

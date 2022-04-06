@@ -52,6 +52,10 @@
         {{(user.password|passwordStrength).getStrengthString()}}
       </div>
 
+      <mat-error class="text-center mt-3" *ngIf="alreadyRegistered">
+        User already registered with this email.
+      </mat-error>
+
       <button
         (click)="onSubmit()"
         [disabled]='emailFormControl.invalid||passwordFormControl.invalid'
