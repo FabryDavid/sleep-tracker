@@ -2,10 +2,12 @@ import {getUserByEmail} from "../../services/userService";
 import {IUser} from "../../interfaces/iuser.Interface";
 import {LoginService} from "../login-service/login-service.Class";
 import {IncorrectPasswordException} from "../../exceptions/incorrect-password/incorrect-password-exception.Class";
+import {TimerService} from "../../services/timer-service/timer.service";
 
 export abstract class LocalStorageWorker {
   static loggedInUserKey = "loggedInUserId"
   static timerKey = "timerStartTime"
+  static timerService = new TimerService()
 
   public static getCurrentUserId(): string | null {
     return localStorage.getItem(this.loggedInUserKey)
@@ -44,6 +46,8 @@ export abstract class LocalStorageWorker {
   public static startTimer(): Date {
     const time = new Date()
     localStorage.setItem(this.timerKey, time.getTime().toString())
+    this.timerService.startTimer()
+    // TimerService.startTimer()
     return time
   }
 
@@ -60,6 +64,8 @@ export abstract class LocalStorageWorker {
   public static stopTimer(): Date | null {
     const time = localStorage.getItem(this.timerKey)
     localStorage.setItem(this.timerKey, '')
+    this.timerService.stopTimer()
+    // TimerService.stopTimer()
 
     if (time) {
       return new Date(parseInt(time))

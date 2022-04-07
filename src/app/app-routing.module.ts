@@ -7,6 +7,7 @@ import {LocalStorageWorker} from "./classes/localstorage-worker/local-storage-wo
 import {LoginComponent} from "./components/views/login/login.component";
 import {RegisterComponent} from "./components/views/register/register.component";
 import {NotFoundComponent} from "./components/views/not-found/not-found.component";
+import {TestComponent} from "./components/views/test/test.component";
 
 
 @Injectable()
@@ -20,6 +21,10 @@ export class AccessGuard implements CanActivate {
       this.router.navigate(['login']);
     }
 
+    if (route.url.length === 0 && LocalStorageWorker.isLoggedIn()) {
+      this.router.navigate(['home']);
+    }
+
     return true
   }
 }
@@ -29,6 +34,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [AccessGuard]},
   {path: 'home', component: HomeLoggedInComponent, data: {requiresLogin: true}, canActivate: [AccessGuard]},
   {path: 'register', component: RegisterComponent, canActivate: [AccessGuard]},
+  {path: 'test', component: TestComponent, canActivate: [AccessGuard]},
   {path: '**', component: NotFoundComponent, canActivate: [AccessGuard]},
 ];
 
