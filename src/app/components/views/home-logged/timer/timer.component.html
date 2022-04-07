@@ -3,11 +3,13 @@
 
   <div class="">
     <div class="timer-text">
-      <h2 *ngIf="timerStarted; else stopText">
+      <h2 *ngIf="isStarted; else stopText">
         Stop sleep timer
       </h2>
       <ng-template #stopText>
-        Start sleep timer
+        <h2>
+          Start sleep timer
+        </h2>
       </ng-template>
     </div>
   </div>
@@ -49,9 +51,9 @@
     </div>
   </div>
 
-  <button (click)="timerStarted ? stopTimer() : startTimer()">
+  <button (click)="isStarted ? stopTimer() : startTimer()">
     <div>
-      <div *ngIf="timerStarted; else stop">Stop</div>
+      <div *ngIf="isStarted; else stop">Stop</div>
       <ng-template #stop>Start</ng-template>
     </div>
   </button>

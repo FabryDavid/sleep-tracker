@@ -20,9 +20,6 @@ import axios from 'axios';
 import {NotFoundComponent} from './components/views/not-found/not-found.component';
 import {TimerComponent} from './components/views/home-logged/timer/timer.component';
 import { AddTimeComponent } from './components/views/home-logged/add-time/add-time.component';
-import { TestComponent } from './components/views/test/test.component';
-import { PartComponent } from './componentts/views/test/part/part/part.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,8 +32,6 @@ import { PartComponent } from './componentts/views/test/part/part/part.component
     NotFoundComponent,
     TimerComponent,
     AddTimeComponent,
-    TestComponent,
-    PartComponent,
   ],
   imports: [
     BrowserModule,

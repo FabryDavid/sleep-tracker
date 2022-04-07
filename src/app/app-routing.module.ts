@@ -7,14 +7,13 @@ import {LocalStorageWorker} from "./classes/localstorage-worker/local-storage-wo
 import {LoginComponent} from "./components/views/login/login.component";
 import {RegisterComponent} from "./components/views/register/register.component";
 import {NotFoundComponent} from "./components/views/not-found/not-found.component";
-import {TestComponent} from "./components/views/test/test.component";
 
 
 @Injectable()
 export class AccessGuard implements CanActivate {
   constructor(
     private router: Router,
-    private localStorageWorker:LocalStorageWorker
+    private localStorageWorker: LocalStorageWorker
   ) {
   }
 
@@ -37,7 +36,6 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [AccessGuard]},
   {path: 'home', component: HomeLoggedInComponent, data: {requiresLogin: true}, canActivate: [AccessGuard]},
   {path: 'register', component: RegisterComponent, canActivate: [AccessGuard]},
-  {path: 'test', component: TestComponent, canActivate: [AccessGuard]},
   {path: '**', component: NotFoundComponent, canActivate: [AccessGuard]},
 ];
 

@@ -55,14 +55,12 @@ export class LocalStorageWorker {
   logoutUser() {
     localStorage.setItem(LocalStorageWorker.loggedInUserKey, "")
     this.loginService.logout()
-    // LoginService.logOutUser()
   }
 
   public startTimer(): Date {
     const time = new Date()
     localStorage.setItem(LocalStorageWorker.timerKey, time.getTime().toString())
     this.timerService.startTimer()
-    // TimerService.startTimer()
     return time
   }
 
@@ -80,7 +78,6 @@ export class LocalStorageWorker {
     const time = localStorage.getItem(LocalStorageWorker.timerKey)
     localStorage.setItem(LocalStorageWorker.timerKey, '')
     this.timerService.stopTimer()
-    // TimerService.stopTimer()
 
     if (time) {
       return new Date(parseInt(time))

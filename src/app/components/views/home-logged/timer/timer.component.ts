@@ -2,8 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LocalStorageWorker} from "../../../../classes/localstorage-worker/local-storage-worker.class";
 import {ElapseTime} from "../../../../classes/elapse-time.Class";
 import {interval, Subscription} from "rxjs";
-import {tap} from "rxjs/operators";
 import {TimerService} from "../../../../services/timer-service/timer.service";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-timer',
@@ -15,33 +15,23 @@ export class TimerComponent implements OnInit, OnDestroy {
   timeElapsed = new ElapseTime(0, 0, 0, 0)
   source = interval(1000)
   subscription: Subscription | undefined
+  timerServiceSubscription: Subscription | undefined
+  isStarted = false
 
   constructor(
+    private localStorageWorker: LocalStorageWorker,
     private timerService: TimerService
   ) {
-    // this.timerStarted = LocalStorageWorker.getTimer()
-    // this.timerService.s.pipe(
-    //   tap(v => console.log(v))
-    // ).subscribe({
-    //   next: (value => {
-    //     console.log(value)
-    //     this.setTimer()
-    //   })
-    // })
-    // TimerService.timerEmitter.subscribe((value) => {
-    //   this.setTimer()
-    // })
+    this.timerStarted = this.localStorageWorker.getTimer()
+    this.isStarted = !!this.timerStarted
+    this.timerServiceSubscription = this.timerService.timerBehavior$.subscribe({
+      next: (_ => {
+        this.setTimer()
+      })
+    })
   }
 
   ngOnInit(): void {
-  }
-
-  load() {
-    // this.timerService.t.subscribe({
-    //   next: (value => {
-    //     this.setTimer()
-    //   })
-    // })
   }
 
   setElapsedTime() {
@@ -64,35 +54,35 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
 
   setTimer() {
-    // this.timerStarted = LocalStorageWorker.getTimer()
-    //
-    // console.log(this.timerStarted)
-    //
-    // if (this.timerStarted) {
-    //   this.subscription = this.source.pipe(
-    //     tap(_ => this.setElapsedTime())
-    //   ).subscribe();
-    // } else {
-    //   if (this.subscription) {
-    //     this.subscription.unsubscribe()
-    //   }
-    //
-    //   this.timeElapsed.days = 0
-    //   this.timeElapsed.hours = 0
-    //   this.timeElapsed.minutes = 0
-    //   this.timeElapsed.seconds = 0
-    // }
+    this.timerStarted = this.localStorageWorker.getTimer()
+    this.isStarted = !!this.timerStarted
+
+    if (this.timerStarted) {
+      this.subscription = this.source.pipe(
+        tap(_ => this.setElapsedTime())
+      ).subscribe();
+    } else {
+      if (this.subscription) {
+        this.subscription.unsubscribe()
+      }
+
+      this.timeElapsed.days = 0
+      this.timeElapsed.hours = 0
+      this.timeElapsed.minutes = 0
+      this.timeElapsed.seconds = 0
+    }
   }
 
   startTimer() {
-    // this.timerStarted = LocalStorageWorker.startTimer()
+    this.timerStarted = this.localStorageWorker.startTimer()
   }
 
   stopTimer() {
-    // this.timerStarted = LocalStorageWorker.stopTimer()
+    this.timerStarted = this.localStorageWorker.stopTimer()
   }
 
   ngOnDestroy() {
-    // TimerService.timerEmitter.unsubscribe()
+    this.subscription?.unsubscribe()
+    this.timerServiceSubscription?.unsubscribe()
   }
 }
