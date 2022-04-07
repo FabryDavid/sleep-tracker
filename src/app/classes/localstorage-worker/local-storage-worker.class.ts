@@ -52,8 +52,9 @@ export class LocalStorageWorker {
     return loginSuccess
   }
 
-  static logoutUser() {
-    localStorage.setItem(this.loggedInUserKey, "")
+  logoutUser() {
+    localStorage.setItem(LocalStorageWorker.loggedInUserKey, "")
+    this.loginService.logout()
     // LoginService.logOutUser()
   }
 
