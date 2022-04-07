@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LocalStorageWorker} from "../../../../classes/localstorage-worker/local-storage-worker.class";
-import {ElapseTime} from "../../../../classes/elapse-time.Class";
+import {ElapseTime} from "../../../../classes/elapsed-time/elapse-time.Class";
 import {interval, Subscription} from "rxjs";
 import {TimerService} from "../../../../services/timer-service/timer.service";
 import {tap} from "rxjs/operators";

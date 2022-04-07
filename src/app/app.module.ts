@@ -19,7 +19,10 @@ import {PasswordStrength} from "./pipes/password-strength.Pipe";
 import axios from 'axios';
 import {NotFoundComponent} from './components/views/not-found/not-found.component';
 import {TimerComponent} from './components/views/home-logged/timer/timer.component';
-import { AddTimeComponent } from './components/views/home-logged/add-time/add-time.component';
+import {AddTimeComponent} from './components/views/home-logged/add-time/add-time.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {SleepTime} from "./pipes/sleep-time.Pipe";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +35,7 @@ import { AddTimeComponent } from './components/views/home-logged/add-time/add-ti
     NotFoundComponent,
     TimerComponent,
     AddTimeComponent,
+    SleepTime
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ import { AddTimeComponent } from './components/views/home-logged/add-time/add-ti
     FormsModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,19 +4,59 @@
       <h2>Add sleep time</h2>
       <img class="tower-image" src="assets/images/foreground.png" alt="Clouds">
 
-      <div class="row w-100">
+      <div class="row w-100 justify-content-between">
         <div class="col-6">
-          <mat-form-field class="example-form-field w-100" appearance="fill">
+          <mat-form-field class="w-100" appearance="outline">
             <mat-label>Sleep time</mat-label>
-            <input matInput type="time">
+            <mat-icon matPrefix>alarm_add</mat-icon>
+            <input
+              matInput
+              [ngxTimepicker]="startTimePicker"
+              [format]="24"
+              [formControl]="startTimeFormControl"
+              [errorStateMatcher]="matcher"
+              [(ngModel)]="startTime"
+              readonly
+            >
           </mat-form-field>
+          <ngx-material-timepicker
+            #startTimePicker
+            [enableKeyboardInput]="true"
+            [theme]="timepickerTheme"
+            [defaultTime]="'00:00'"
+          ></ngx-material-timepicker>
         </div>
 
         <div class="col-6">
-          <mat-form-field class="example-form-field w-100" appearance="fill">
+          <mat-form-field class="w-100" appearance="outline">
             <mat-label>Wake up time</mat-label>
-            <input matInput type="time">
+            <mat-icon matPrefix>alarm_add</mat-icon>
+            <input
+              matInput
+              [ngxTimepicker]="wakeUpTimePicker"
+              [format]="24"
+              [formControl]="wakeUpTimeFormControl"
+              [errorStateMatcher]="matcher"
+              [(ngModel)]="wakeupTime"
+              readonly
+            >
           </mat-form-field>
+          <ngx-material-timepicker
+            #wakeUpTimePicker
+            [enableKeyboardInput]="true"
+            [theme]="timepickerTheme"
+            [defaultTime]="currentTime"
+          ></ngx-material-timepicker>
+        </div>
+      </div>
+
+      <div class="slept-time">
+        <div class="fw-bold">
+          Slept:
+        </div>
+
+        <div class="">
+          {{startTime|SleepTime:wakeupTime}}
         </div>
       </div>
 
