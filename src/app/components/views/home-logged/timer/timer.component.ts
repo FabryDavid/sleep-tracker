@@ -4,6 +4,8 @@ import {ElapseTime} from "../../../../classes/elapsed-time/elapse-time.Class";
 import {interval, Subscription} from "rxjs";
 import {TimerService} from "../../../../services/timer-service/timer.service";
 import {tap} from "rxjs/operators";
+import {addSleepTime} from "../../../../services/sleep-time-service";
+import {SleepTime} from "../../../../classes/sleep-time/sleep-time.Class";
 
 @Component({
   selector: 'app-timer',
@@ -79,6 +81,14 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   stopTimer() {
     this.timerStarted = this.localStorageWorker.stopTimer()
+
+    if (this.timerStarted) {
+      const now = new Date()
+
+      addSleepTime(new SleepTime(this.timerStarted, now, this.localStorageWorker.getCurrentUserId())).then((response) => {
+        console.log(response)
+      })
+    }
   }
 
   ngOnDestroy() {

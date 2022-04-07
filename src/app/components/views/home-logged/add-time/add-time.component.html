@@ -68,8 +68,8 @@
 
       <button
         class="save-button mt-5"
-        type="submit"
-        [disabled]='startTimeFormControl.invalid||wakeUpTimeFormControl.invalid'
+        (click)="onSubmit()"
+        [disabled]='startTimeFormControl.invalid || wakeUpTimeFormControl.invalid || (startTime === wakeupTime)'
       >
         <div>
           Save

@@ -20,5 +20,91 @@
       "password": "testpassword",
       "id": "18bdbaba-a9df-4562-9334-7cfd57c0b130"
     }
+  ],
+  "sleepTimes": [
+    {
+      "startTime": "2022-04-07T10:50:00.771Z",
+      "wakeupTime": "2022-04-07T10:59:00.771Z",
+      "userId": "18bdbaba-a9df-4562-9334-7cfd57c0b130",
+      "addDate": "2022-04-07T10:50:00.771Z",
+      "id": "c1ffb52b-d2d6-45f4-94e5-de2c301f4c30"
+    },
+    {
+      "startTime": "2022-04-07T10:54:16.182Z",
+      "wakeupTime": "2022-04-07T10:54:31.473Z",
+      "userId": "18bdbaba-a9df-4562-9334-7cfd57c0b130",
+      "addDate": "2022-05-07T09:50:00.771Z",
+      "id": "74464a2f-a479-4398-8dc0-295bebb33c71"
+    },
+    {
+      "startTime": "2022-04-07T10:50:00.771Z",
+      "wakeupTime": "2022-04-07T10:59:00.771Z",
+      "userId": "18bdbaba-a9df-4562-9334-7cfd57c0b130",
+      "addDate": "2022-06-07T10:50:00.771Z",
+      "id": "c1ffb52b-d2d6-45f4-94e5-c31cd00e24f3"
+    },
+    {
+      "startTime": "2022-04-07T10:54:16.182Z",
+      "wakeupTime": "2022-04-07T10:54:31.473Z",
+      "userId": "18bdbaba-a9df-4562-9334-7cfd57c0b130",
+      "addDate": "2022-07-07T09:50:00.771Z",
+      "id": "74464a2f-a479-4398-8dc0-2e5bb3b3179c"
+    },
+    {
+      "startTime": "2022-04-07T10:50:00.771Z",
+      "wakeupTime": "2022-04-07T10:59:00.771Z",
+      "userId": "18bdbaba-a9df-4562-9334-7cfd57c0b130",
+      "addDate": "2022-08-07T10:50:00.771Z",
+      "id": "c1ffb52b-d2d6-45f4-94e5-31cd4f2300ec"
+    },
+    {
+      "startTime": "2022-04-07T10:54:16.182Z",
+      "wakeupTime": "2022-04-07T10:54:31.473Z",
+      "userId": "18bdbaba-a9df-4562-9334-7cfd57c0b130",
+      "addDate": "2022-09-07T09:50:00.771Z",
+      "id": "74464a2f-a479-4398-8dc0-3513bb27c9be"
+    },
+    {
+      "startTime": "2022-04-07T10:50:00.771Z",
+      "wakeupTime": "2022-04-07T10:59:00.771Z",
+      "userId": "18bdbaba-a9df-4562-9334-7cfd57c0b130",
+      "addDate": "2022-10-07T10:50:00.771Z",
+      "id": "c1ffb52b-d2d6-45f4-94e5-04d3cc2ef031"
+    },
+    {
+      "startTime": "2022-04-07T10:54:16.182Z",
+      "wakeupTime": "2022-04-07T10:54:31.473Z",
+      "userId": "18bdbaba-a9df-4562-9334-7cfd57c0b130",
+      "addDate": "2022-11-07T09:50:00.771Z",
+      "id": "74464a2f-a479-4398-8dc0-cbb59b331e27"
+    },
+    {
+      "startTime": "2022-04-07T10:50:00.771Z",
+      "wakeupTime": "2022-04-07T10:59:00.771Z",
+      "userId": "18bdbaba-a9df-4562-9334-7cfd57c0b130",
+      "addDate": "2022-12-07T10:50:00.771Z",
+      "id": "c1ffb52b-d2d6-45f4-94e5-e3023d1fc40c"
+    },
+    {
+      "startTime": "2022-04-07T10:54:16.182Z",
+      "wakeupTime": "2022-04-07T10:54:31.473Z",
+      "userId": "18bdbaba-a9df-4562-9334-7cfd57c0b130",
+      "addDate": "2022-12-07T09:50:00.771Z",
+      "id": "74464a2f-a479-4398-8dc0-cbe1b9b33257"
+    },
+    {
+      "startTime": "2022-04-07T10:50:00.771Z",
+      "wakeupTime": "2022-04-07T10:59:00.771Z",
+      "userId": "18bdbaba-a9df-4562-9334-7cfd57c0b130",
+      "addDate": "2022-04-07T10:50:00.771Z",
+      "id": "c1ffb52b-d2d6-45f4-94e5-2d0e03c341fc"
+    },
+    {
+      "startTime": "2022-04-07T10:54:16.182Z",
+      "wakeupTime": "2022-04-07T10:54:31.473Z",
+      "userId": "18bdbaba-a9df-4562-9334-7cfd57c0b130",
+      "addDate": "2022-04-07T09:50:00.771Z",
+      "id": "74464a2f-a479-4398-8dc0-31bbe894c6b2"
+    }
   ]
 }

@@ -4,6 +4,7 @@ import {IncorrectPasswordException} from "../../exceptions/incorrect-password/in
 import {TimerService} from "../../services/timer-service/timer.service";
 import {Injectable} from "@angular/core";
 import {LoginService} from "../../services/login-service/login.service";
+import {ISleepTime} from "../../interfaces/isleep-time.Interface";
 
 @Injectable({
   providedIn: 'root'

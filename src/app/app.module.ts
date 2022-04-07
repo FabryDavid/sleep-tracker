@@ -22,6 +22,10 @@ import {TimerComponent} from './components/views/home-logged/timer/timer.compone
 import {AddTimeComponent} from './components/views/home-logged/add-time/add-time.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {SleepTime} from "./pipes/sleep-time.Pipe";
+import {SleepTimesComponent} from './components/views/home-logged/sleep-times/sleep-times.component';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {SleepTimePanelComponent} from './components/views/home-logged/sleep-time-panel/sleep-time-panel.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -35,7 +39,9 @@ import {SleepTime} from "./pipes/sleep-time.Pipe";
     NotFoundComponent,
     TimerComponent,
     AddTimeComponent,
-    SleepTime
+    SleepTime,
+    SleepTimesComponent,
+    SleepTimePanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,9 @@ import {SleepTime} from "./pipes/sleep-time.Pipe";
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    MatExpansionModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

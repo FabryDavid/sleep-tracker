@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {NgxMaterialTimepickerTheme} from "ngx-material-timepicker";
 import {FormControl, Validators} from "@angular/forms";
 import {MyErrorStateMatcher} from "../../login/login.component";
+import {SleepTime} from "../../../../classes/sleep-time/sleep-time.Class";
+import {LocalStorageWorker} from "../../../../classes/localstorage-worker/local-storage-worker.class";
+import {addSleepTime} from "../../../../services/sleep-time-service";
 
 @Component({
   selector: 'app-add-time',
@@ -28,13 +31,26 @@ export class AddTimeComponent implements OnInit {
   startTimeFormControl = new FormControl('', [Validators.required]);
   wakeUpTimeFormControl = new FormControl('', [Validators.required]);
   matcher = new MyErrorStateMatcher();
-  startTime = ""
+  startTime = this.currentTime
   wakeupTime = this.currentTime
 
-  constructor() {
+  constructor(
+    private localStorageWorker: LocalStorageWorker
+  ) {
   }
 
   ngOnInit(): void {
   }
 
+  onSubmit() {
+    console.log('submit')
+
+    const startTime = SleepTime.timeToDate(this.startTime)
+    const wakeupTime = SleepTime.timeToDate(this.wakeupTime)
+    const sleepTime = new SleepTime(startTime, wakeupTime, this.localStorageWorker.getCurrentUserId())
+
+    addSleepTime(sleepTime).then((response) => {
+      console.log(response)
+    })
+  }
 }
