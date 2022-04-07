@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {NgxMaterialTimepickerTheme} from "ngx-material-timepicker";
 import {FormControl, Validators} from "@angular/forms";
 import {MyErrorStateMatcher} from "../../login/login.component";
-import {SleepTime} from "../../../../classes/sleep-time/sleep-time.Class";
 
 @Component({
   selector: 'app-add-time',
@@ -29,8 +28,8 @@ export class AddTimeComponent implements OnInit {
   startTimeFormControl = new FormControl('', [Validators.required]);
   wakeUpTimeFormControl = new FormControl('', [Validators.required]);
   matcher = new MyErrorStateMatcher();
-  startTime=""
-  wakeupTime=""
+  startTime = ""
+  wakeupTime = this.currentTime
 
   constructor() {
   }

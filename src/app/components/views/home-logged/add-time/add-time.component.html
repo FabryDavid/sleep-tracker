@@ -18,6 +18,9 @@
               [(ngModel)]="startTime"
               readonly
             >
+            <mat-error *ngIf="startTimeFormControl.hasError('required')">
+              Sleep time is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
           <ngx-material-timepicker
             #startTimePicker
@@ -40,6 +43,9 @@
               [(ngModel)]="wakeupTime"
               readonly
             >
+            <mat-error *ngIf="wakeUpTimeFormControl.hasError('required')">
+              Wake up time is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
           <ngx-material-timepicker
             #wakeUpTimePicker
@@ -50,17 +56,21 @@
         </div>
       </div>
 
-      <div class="slept-time">
-        <div class="fw-bold">
+      <div class="slept-time text-center">
+        <div class="fw-bold fs-4">
           Slept:
         </div>
 
-        <div class="">
+        <div class="fs-5">
           {{startTime|SleepTime:wakeupTime}}
         </div>
       </div>
 
-      <button class="save-button" type="submit">
+      <button
+        class="save-button mt-5"
+        type="submit"
+        [disabled]='startTimeFormControl.invalid||wakeUpTimeFormControl.invalid'
+      >
         <div>
           Save
         </div>
