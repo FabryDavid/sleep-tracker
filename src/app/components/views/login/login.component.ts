@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   constructor(
-    private router: Router
+    private router: Router,
+    private localStorageWorker: LocalStorageWorker
   ) {
   }
 
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    LocalStorageWorker.loginUser(this.user).then((response) => {
+    this.localStorageWorker.loginUser(this.user).then((response) => {
       if (response) {
         this.router.navigate(['/home'])
       }

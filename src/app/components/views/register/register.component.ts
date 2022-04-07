@@ -20,7 +20,8 @@ export class RegisterComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   constructor(
-    private router: Router
+    private router: Router,
+    private localStorageWorker: LocalStorageWorker
   ) {
   }
 
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     registerUser(this.user).then((response) => {
       if (response) {
-        LocalStorageWorker.loginUser(response).then((response) => {
+        this.localStorageWorker.loginUser(response).then((response) => {
           if (response) {
             this.router.navigate(['/home'])
           }

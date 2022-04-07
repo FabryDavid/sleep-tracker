@@ -1,9 +1,9 @@
 {
   "users": [
     {
-      "email": "fdavid1017@gmail.com",
-      "password": "12345678",
-      "id": "0a640e5b-cdfc-4782-b4be-b241d3c530c1"
+      "email": "admin@admin.hu",
+      "password": "admin",
+      "id": "f0b8d51f-b027-41f3-b0ea-e2c437dbcb66"
     },
     {
       "email": "sonic101999@gmail.com",
@@ -11,9 +11,9 @@
       "id": "fb48dc11-4304-42b7-85b7-938f5577efe0"
     },
     {
-      "email": "admin@admin.hu",
-      "password": "lkkkkkkkkkkkkkkkk",
-      "id": "f0b8d51f-b027-41f3-b0ea-e2c437dbcb66"
+      "email": "fdavid1017@gmail.com",
+      "password": "1",
+      "id": "d28ac17d-a51d-4b34-b52d-2123244bf6a9"
     }
   ]
 }

@@ -1,7 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LocalStorageWorker} from "../../../classes/localstorage-worker/local-storage-worker.class";
-import {LoginService} from "../../../classes/login-service/login-service.Class";
 import {Router} from "@angular/router";
+import {LoginService} from "../../../services/login-service/login.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-navbar',
@@ -9,26 +10,30 @@ import {Router} from "@angular/router";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  public userLoggedIn = LocalStorageWorker.isLoggedIn()
+  public userLoggedIn = this.localStorageWorker.isLoggedIn()
+
+  private subscribe: Subscription | undefined
 
   constructor(
-    private router: Router
+    private router: Router,
+    private localStorageWorker: LocalStorageWorker,
+    private loginService: LoginService
   ) {
-    LoginService.loggedInEmitter.subscribe((value) => {
-      this.userLoggedIn = value
-    })
   }
 
   ngOnInit(): void {
+    this.subscribe = this.loginService.loginBehavior$.subscribe(_ => {
+      this.userLoggedIn = this.localStorageWorker.isLoggedIn()
+    })
   }
 
   logout() {
     LocalStorageWorker.logoutUser()
-    this.userLoggedIn = LocalStorageWorker.isLoggedIn()
+    this.userLoggedIn = this.localStorageWorker.isLoggedIn()
     this.router.navigate(['/'])
   }
 
   ngOnDestroy() {
-    LoginService.loggedInEmitter.unsubscribe()
+    this.subscribe?.unsubscribe()
   }
 }

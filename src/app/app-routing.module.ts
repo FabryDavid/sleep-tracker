@@ -12,16 +12,19 @@ import {TestComponent} from "./components/views/test/test.component";
 
 @Injectable()
 export class AccessGuard implements CanActivate {
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private localStorageWorker:LocalStorageWorker
+  ) {
   }
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     const requiresLogin = route.data.requiresLogin || false;
-    if (requiresLogin && !LocalStorageWorker.isLoggedIn()) {
+    if (requiresLogin && !this.localStorageWorker.isLoggedIn()) {
       this.router.navigate(['login']);
     }
 
-    if (route.url.length === 0 && LocalStorageWorker.isLoggedIn()) {
+    if (route.url.length === 0 && this.localStorageWorker.isLoggedIn()) {
       this.router.navigate(['home']);
     }
 

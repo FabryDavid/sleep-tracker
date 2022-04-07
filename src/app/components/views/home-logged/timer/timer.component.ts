@@ -19,15 +19,15 @@ export class TimerComponent implements OnInit, OnDestroy {
   constructor(
     private timerService: TimerService
   ) {
-    this.timerStarted = LocalStorageWorker.getTimer()
-    this.timerService.s.pipe(
-      tap(v => console.log(v))
-    ).subscribe({
-      next: (value => {
-        console.log(value)
-        this.setTimer()
-      })
-    })
+    // this.timerStarted = LocalStorageWorker.getTimer()
+    // this.timerService.s.pipe(
+    //   tap(v => console.log(v))
+    // ).subscribe({
+    //   next: (value => {
+    //     console.log(value)
+    //     this.setTimer()
+    //   })
+    // })
     // TimerService.timerEmitter.subscribe((value) => {
     //   this.setTimer()
     // })
@@ -64,32 +64,32 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
 
   setTimer() {
-    this.timerStarted = LocalStorageWorker.getTimer()
-
-    console.log(this.timerStarted)
-
-    if (this.timerStarted) {
-      this.subscription = this.source.pipe(
-        tap(_ => this.setElapsedTime())
-      ).subscribe();
-    } else {
-      if (this.subscription) {
-        this.subscription.unsubscribe()
-      }
-
-      this.timeElapsed.days = 0
-      this.timeElapsed.hours = 0
-      this.timeElapsed.minutes = 0
-      this.timeElapsed.seconds = 0
-    }
+    // this.timerStarted = LocalStorageWorker.getTimer()
+    //
+    // console.log(this.timerStarted)
+    //
+    // if (this.timerStarted) {
+    //   this.subscription = this.source.pipe(
+    //     tap(_ => this.setElapsedTime())
+    //   ).subscribe();
+    // } else {
+    //   if (this.subscription) {
+    //     this.subscription.unsubscribe()
+    //   }
+    //
+    //   this.timeElapsed.days = 0
+    //   this.timeElapsed.hours = 0
+    //   this.timeElapsed.minutes = 0
+    //   this.timeElapsed.seconds = 0
+    // }
   }
 
   startTimer() {
-    this.timerStarted = LocalStorageWorker.startTimer()
+    // this.timerStarted = LocalStorageWorker.startTimer()
   }
 
   stopTimer() {
-    this.timerStarted = LocalStorageWorker.stopTimer()
+    // this.timerStarted = LocalStorageWorker.stopTimer()
   }
 
   ngOnDestroy() {

@@ -1,30 +1,39 @@
 import {getUserByEmail} from "../../services/userService";
 import {IUser} from "../../interfaces/iuser.Interface";
-import {LoginService} from "../login-service/login-service.Class";
 import {IncorrectPasswordException} from "../../exceptions/incorrect-password/incorrect-password-exception.Class";
 import {TimerService} from "../../services/timer-service/timer.service";
+import {Injectable} from "@angular/core";
+import {LoginService} from "../../services/login-service/login.service";
 
-export abstract class LocalStorageWorker {
+@Injectable({
+  providedIn: 'root'
+})
+export class LocalStorageWorker {
   static loggedInUserKey = "loggedInUserId"
   static timerKey = "timerStartTime"
-  static timerService = new TimerService()
 
-  public static getCurrentUserId(): string | null {
-    return localStorage.getItem(this.loggedInUserKey)
+  constructor(
+    private loginService: LoginService,
+    private timerService: TimerService
+  ) {
   }
 
-  public static isLoggedIn(): boolean {
+  public getCurrentUserId(): string | null {
+    return localStorage.getItem(LocalStorageWorker.loggedInUserKey)
+  }
+
+  public isLoggedIn(): boolean {
     return !!this.getCurrentUserId()
   }
 
-  public static async loginUser(user: IUser): Promise<boolean> {
+  public async loginUser(user: IUser): Promise<boolean> {
     let loginSuccess = false
     await getUserByEmail(user.email).then((response) => {
       if (response && response.length === 1) {
         const u = response[0]
 
         if (u.email === user.email && u.password === user.password) {
-          localStorage.setItem(this.loggedInUserKey, response[0].id)
+          localStorage.setItem(LocalStorageWorker.loggedInUserKey, response[0].id)
           loginSuccess = true
         }
       }
@@ -34,25 +43,30 @@ export abstract class LocalStorageWorker {
       throw new IncorrectPasswordException("Incorrect password or email")
     }
 
-    LoginService.triggerEvent(loginSuccess)
+    if (loginSuccess) {
+      this.loginService.login()
+    } else {
+      this.loginService.logout()
+    }
+
     return loginSuccess
   }
 
   static logoutUser() {
     localStorage.setItem(this.loggedInUserKey, "")
-    LoginService.logOutUser()
+    // LoginService.logOutUser()
   }
 
-  public static startTimer(): Date {
+  public startTimer(): Date {
     const time = new Date()
-    localStorage.setItem(this.timerKey, time.getTime().toString())
+    localStorage.setItem(LocalStorageWorker.timerKey, time.getTime().toString())
     this.timerService.startTimer()
     // TimerService.startTimer()
     return time
   }
 
-  public static getTimer(): Date | null {
-    const time = localStorage.getItem(this.timerKey)
+  public getTimer(): Date | null {
+    const time = localStorage.getItem(LocalStorageWorker.timerKey)
 
     if (time) {
       return new Date(parseInt(time))
@@ -61,9 +75,9 @@ export abstract class LocalStorageWorker {
     return null
   }
 
-  public static stopTimer(): Date | null {
-    const time = localStorage.getItem(this.timerKey)
-    localStorage.setItem(this.timerKey, '')
+  public stopTimer(): Date | null {
+    const time = localStorage.getItem(LocalStorageWorker.timerKey)
+    localStorage.setItem(LocalStorageWorker.timerKey, '')
     this.timerService.stopTimer()
     // TimerService.stopTimer()
 
