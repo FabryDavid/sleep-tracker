@@ -26,6 +26,9 @@ import {SleepTimesComponent} from './components/views/home-logged/sleep-times/sl
 import {MatExpansionModule} from "@angular/material/expansion";
 import {SleepTimePanelComponent} from './components/views/home-logged/sleep-time-panel/sleep-time-panel.component';
 import {HttpClientModule} from "@angular/common/http";
+import { AvgSleepPanelComponent } from './components/views/home-logged/avg-sleep-panel/avg-sleep-panel.component';
+import { TotalSleepPanelComponent } from './components/views/home-logged/total-sleep-panel/total-sleep-panel.component';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [
@@ -42,22 +45,25 @@ import {HttpClientModule} from "@angular/common/http";
     SleepTime,
     SleepTimesComponent,
     SleepTimePanelComponent,
+    AvgSleepPanelComponent,
+    TotalSleepPanelComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
-    FormsModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    NgxMaterialTimepickerModule,
-    MatExpansionModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatIconModule,
+        FormsModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        NgxMaterialTimepickerModule,
+        MatExpansionModule,
+        HttpClientModule,
+        MatButtonToggleModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

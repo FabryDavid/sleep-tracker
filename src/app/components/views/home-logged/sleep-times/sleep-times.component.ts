@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ISleepTime} from "../../../../interfaces/isleep-time.Interface";
 import {LocalStorageWorker} from "../../../../classes/localstorage-worker/local-storage-worker.class";
 import {SleepTimeService} from "../../../../services/sleep-time.service";
+import {RequestOptions} from "../../../../classes/request-options/request-options.Class";
+import {SleepTime} from "../../../../classes/sleep-time/sleep-time.Class";
 
 @Component({
   selector: 'app-sleep-times',
@@ -9,36 +10,35 @@ import {SleepTimeService} from "../../../../services/sleep-time.service";
   styleUrls: ['./sleep-times.component.scss']
 })
 export class SleepTimesComponent implements OnInit {
-  sleepTimes: ISleepTime[] = []
+  sleepTimes: SleepTime[] = []
   requestPage = 0
-  requestLimit = 10
+  requestLimit = 4
+  currentUserId: string | null = null
 
   constructor(
     private localStorageWorker: LocalStorageWorker,
     private sleepTimeService: SleepTimeService
   ) {
-    const currentUserId = localStorageWorker.getCurrentUserId()
+    this.currentUserId = localStorageWorker.getCurrentUserId()
 
-    if (currentUserId) {
-      this.sleepTimeService.getUserSleepTimes(currentUserId).subscribe((data) => {
-        console.log(data)
-      })
-      // getUserSleepTimes(currentUserId,
-      //   {
-      //     '_sort': 'addDate',
-      //     '_order': 'asc',
-      //     '_page': this.requestPage,
-      //     '_limit': this.requestLimit
-      //   }
-      // ).then(response => {
-      //   if (response) {
-      //     this.sleepTimes = response
-      //   }
-      // })
-    }
+    this.loadSleepTimes()
   }
 
   ngOnInit(): void {
+  }
+
+  loadSleepTimes() {
+    if (this.currentUserId) {
+      const options = new RequestOptions('wakeupTime', 'desc', this.requestPage, this.requestLimit)
+
+      this.sleepTimeService.getUserSleepTimes(this.currentUserId, options).subscribe((data) => {
+        this.sleepTimes = []
+        data.forEach((item) => {
+          const st = new SleepTime(new Date(item.startTime), new Date(item.wakeupTime), item.userId, new Date(item.addDate), item.id)
+          this.sleepTimes.push(st)
+        })
+      })
+    }
   }
 
 }

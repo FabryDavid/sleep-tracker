@@ -1,9 +1,16 @@
-<div class="sleep-time-panel mb-3 d-flex align-items-center">
-  <h5>
-<!--    {{sleepTime.startTime}}-->
-  </h5>
+<div class="sleep-time-panel mb-4 d-flex align-items-center">
+  <div class="icon-container" (click)="removeTime()">
+    <mat-icon class="icon-timer">timer</mat-icon>
+    <mat-icon class="icon-close">close</mat-icon>
+  </div>
 
-  <div class="">
-<!--    {{sleepTime.getSleptTime()}}-->
+  <div class="text-content px-3 d-flex align-items-center justify-content-between w-100">
+    <h4>
+      {{sleepTime.startTime.toLocaleString('en-US', {year: 'numeric', month: 'short', day: '2-digit'})}}
+    </h4>
+
+    <div class="time-text">
+      {{sleepTime.getSleptTimeFormatted()}}
+    </div>
   </div>
 </div>

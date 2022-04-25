@@ -1,0 +1,14 @@
+@import "src/assets/scss/variables";
+
+.toggle-button {
+  background-color: $primary-lighten;
+  color: white;
+}
+
+.mat-button-toggle-checked {
+  background-color: $accent;
+}
+
+.mat-button-toggle-group {
+  border-radius: 15px;
+}

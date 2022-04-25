@@ -1,0 +1,11 @@
+@import "src/assets/scss/variables";
+
+.total-sleep-time {
+  background-color: $primary-lighten;
+  border-radius: 15px;
+
+  .icon {
+    font-size: 50px;
+    margin-right: 25px;
+  }
+}

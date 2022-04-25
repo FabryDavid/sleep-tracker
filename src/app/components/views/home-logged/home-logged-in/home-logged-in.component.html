@@ -11,4 +11,21 @@
       <app-sleep-times></app-sleep-times>
     </div>
   </div>
+
+  <div class="mt-5 d-flex justify-content-center">
+    <mat-button-toggle-group [(ngModel)]="timeFilter" name="filterType" class="">
+      <mat-button-toggle class="toggle-button" value="sevenDays">Last 7 days</mat-button-toggle>
+      <mat-button-toggle class="toggle-button" value="thisMonth">This month</mat-button-toggle>
+      <mat-button-toggle class="toggle-button" value="thisYear">This year</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div class="mt-5 row align-items-center justify-content-center">
+    <div class="col-4">
+      <app-avg-sleep-panel></app-avg-sleep-panel>
+    </div>
+    <div class="col-4">
+      <app-total-sleep-panel></app-total-sleep-panel>
+    </div>
+  </div>
 </div>

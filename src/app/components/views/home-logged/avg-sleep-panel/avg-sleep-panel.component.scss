@@ -1,0 +1,10 @@
+@import "src/assets/scss/variables";
+
+.avg-sleep-time {
+  background-color: $primary-lighten;
+  border-radius: 15px;
+
+  .icon {
+    font-size: 50px;
+  }
+}

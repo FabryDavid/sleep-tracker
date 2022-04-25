@@ -1,3 +1,5 @@
+@import "variables";
+
 @mixin button {
   font-size: 18px;
   background-color: $accent;
@@ -10,7 +12,6 @@
   padding: 0 35px;
   line-height: 23px;
   border-radius: 15px;
-  margin-top: 75px;
   transition: all 0.15s;
   height: 70px;
   display: flex;

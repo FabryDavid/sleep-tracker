@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-home-logged-in',
@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-logged-in.component.scss']
 })
 export class HomeLoggedInComponent implements OnInit {
+  timeFilter?: string = "sevenDays"
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
