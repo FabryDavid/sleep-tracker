@@ -25,8 +25,8 @@ export class SleepTime implements ISleepTime {
     return moment(end.diff(start));
   }
 
-  getSleptTimeFormatted(): string {
-    return this.getSleptTime().subtract('01:00:00').format('HH:mm')
+  getSleptTimeFormatted(format='HH:mm'): string {
+    return this.getSleptTime().subtract('01:00:00').format(format)
   }
 
   static timeToDate(time: string): Date {

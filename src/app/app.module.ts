@@ -26,9 +26,11 @@ import {SleepTimesComponent} from './components/views/home-logged/sleep-times/sl
 import {MatExpansionModule} from "@angular/material/expansion";
 import {SleepTimePanelComponent} from './components/views/home-logged/sleep-time-panel/sleep-time-panel.component';
 import {HttpClientModule} from "@angular/common/http";
-import { AvgSleepPanelComponent } from './components/views/home-logged/avg-sleep-panel/avg-sleep-panel.component';
-import { TotalSleepPanelComponent } from './components/views/home-logged/total-sleep-panel/total-sleep-panel.component';
+import {AvgSleepPanelComponent} from './components/views/home-logged/avg-sleep-panel/avg-sleep-panel.component';
+import {TotalSleepPanelComponent} from './components/views/home-logged/total-sleep-panel/total-sleep-panel.component';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -48,22 +50,24 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     AvgSleepPanelComponent,
     TotalSleepPanelComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatIconModule,
-        FormsModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        NgxMaterialTimepickerModule,
-        MatExpansionModule,
-        HttpClientModule,
-        MatButtonToggleModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    FormsModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    NgxMaterialTimepickerModule,
+    MatExpansionModule,
+    HttpClientModule,
+    MatButtonToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
