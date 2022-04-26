@@ -1,8 +1,8 @@
 @import "src/assets/scss/variables";
+@import "src/assets/scss/mixins";
 
 .avg-sleep-time {
-  background-color: $primary-lighten;
-  border-radius: 15px;
+  @include panel;
 
   .icon {
     font-size: 50px;

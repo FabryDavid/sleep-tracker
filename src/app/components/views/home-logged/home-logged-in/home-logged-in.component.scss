@@ -1,4 +1,5 @@
 @import "src/assets/scss/variables";
+@import "src/assets/scss/mixins";
 
 .toggle-button {
   background-color: $primary-lighten;
@@ -10,10 +11,29 @@
 }
 
 .mat-button-toggle-group {
-  border-radius: 15px;
+  @include panel;
 }
 
-.advanced-search-panel {
-  background-color: transparent;
-  color: white;
+.sleep-times-list {
+  @include panel;
+
+  .times-table {
+    background-color: transparent;
+    color: white;
+
+    tr, th, td {
+      color: white;
+    }
+
+    th.mat-header-cell,
+    td.mat-cell {
+      border-bottom-color: rgba(255, 255, 255, 0.26);
+    }
+  }
+
+  .paginator {
+    .mat-button-disabled {
+      color: rgba(255, 255, 255, 0.26);
+    }
+  }
 }

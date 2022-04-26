@@ -29,11 +29,12 @@ export class SleepTimeService {
     )
   }
 
-  filterSleepTimes(userId: string, options: RequestFilter): Observable<Array<ISleepTime>> {
+  filterSleepTimes(userId: string, options: RequestFilter): Observable<any> {
     let params = options.getOptions().set('userId', userId)
 
-    return this.http.get<Array<ISleepTime>>(`${this.apiUrl}/sleepTimes`, {
+    return this.http.get<any>(`${this.apiUrl}/sleepTimes`, {
       params,
+      observe: 'response'
     }).pipe(
       catchError(this.handleError.bind(this))
     )

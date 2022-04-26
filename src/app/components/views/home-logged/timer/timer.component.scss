@@ -2,8 +2,7 @@
 @import "src/assets/scss/mixins";
 
 .timer {
-  background-color: $primary-lighten;
-  border-radius: 15px;
+  @include panel;
   display: flex;
   align-items: center;
   height: 100px;

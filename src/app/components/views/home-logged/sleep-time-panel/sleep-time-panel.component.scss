@@ -1,8 +1,8 @@
 @import "src/assets/scss/variables";
+@import "src/assets/scss/mixins";
 
 .sleep-time-panel {
-  background-color: $primary-lighten;
-  border-radius: 15px;
+  @include panel;
   overflow: hidden;
   min-height: 85px;
 

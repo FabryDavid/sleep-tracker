@@ -11,8 +11,7 @@
   overflow: hidden;
 
   .form {
-    background-color: $primary-lighten;
-    border-radius: 15px;
+    @include panel;
     padding-bottom: 200px !important;
     padding-top: 35px !important;
 
