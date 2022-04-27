@@ -1,0 +1,27 @@
+<div>
+  <ngx-charts-line-chart
+    [legend]="false"
+    [scheme]="'fire'"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    [autoScale]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="'Slept time'"
+    [timeline]="false"
+    [results]="chartValues"
+    [yAxisTickFormatting]="formatAxis"
+  >
+    <ng-template #tooltipTemplate let-model="model">
+      <div class="">
+        {{model.value|durationFormat}}
+      </div>
+    </ng-template>
+    <ng-template #seriesTooltipTemplate let-model="model">
+      <div class="">
+        {{model[0].value|durationFormat}}
+      </div>
+    </ng-template>
+  </ngx-charts-line-chart>
+</div>

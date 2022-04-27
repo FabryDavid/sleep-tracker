@@ -1,0 +1,22 @@
+@import "src/assets/scss/variables";
+@import "src/assets/scss/mixins";
+
+
+.sleep-times-list {
+  @include panel;
+  overflow: hidden;
+
+  .times-table {
+    background-color: transparent;
+    color: white;
+
+    tr, th, td {
+      color: white;
+    }
+
+    th.mat-header-cell,
+    td.mat-cell {
+      border-bottom-color: rgba(255, 255, 255, 0.26);
+    }
+  }
+}

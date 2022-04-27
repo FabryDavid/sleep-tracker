@@ -35,6 +35,8 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {LineChartModule} from "@swimlane/ngx-charts";
 import {DurationFormatPipe} from './pipes/duration-format.pipe';
+import { SleepTimesTableComponent } from './components/views/home-logged/sleep-times-table/sleep-times-table.component';
+import { SleepTimesChartComponent } from './components/views/home-logged/sleep-times-chart/sleep-times-chart.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import {DurationFormatPipe} from './pipes/duration-format.pipe';
     AvgSleepPanelComponent,
     TotalSleepPanelComponent,
     DurationFormatPipe,
+    SleepTimesTableComponent,
+    SleepTimesChartComponent,
   ],
   imports: [
     BrowserModule,
