@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LocalStorageWorker} from "../../../../classes/localstorage-worker/local-storage-worker.class";
 import {SleepTimeService} from "../../../../services/sleep-time.service";
 import {RequestOptions} from "../../../../classes/request-options/request-options.Class";
@@ -10,6 +10,8 @@ import {SleepTime} from "../../../../classes/sleep-time/sleep-time.Class";
   styleUrls: ['./sleep-times.component.scss']
 })
 export class SleepTimesComponent implements OnInit {
+  @Output() update: EventEmitter<null> = new EventEmitter<null>()
+
   sleepTimes: SleepTime[] = []
   requestPage = 0
   requestLimit = 4
@@ -38,6 +40,7 @@ export class SleepTimesComponent implements OnInit {
           this.sleepTimes.push(st)
         })
       })
+      this.update.emit()
     }
   }
 

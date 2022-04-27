@@ -1,5 +1,8 @@
 @import "src/assets/scss/variables";
 @import "src/assets/scss/mixins";
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
 
 .main-top-margin {
   margin-top: 64px;
@@ -15,6 +18,10 @@
     padding-bottom: 200px !important;
     padding-top: 35px !important;
 
+    @include media-breakpoint-down(sm) {
+      padding-bottom: 125px !important;
+    }
+
     h2 {
       font-weight: bold;
       font-size: 40px;
@@ -22,6 +29,10 @@
       top: 0;
       left: 0;
       transform: translateY(-50%);
+
+      @include media-breakpoint-down(sm) {
+        font-size: 30px;
+      }
     }
 
     .tower-image {

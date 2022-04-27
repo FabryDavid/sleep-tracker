@@ -35,9 +35,9 @@ $sleep-tracker-theme: mat.define-light-theme((
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "assets/fonts/fonts";
-@import "assets/scss/variables";
-@import "assets/scss/mixins";
-@import "assets/scss/global";
+@import "assets/scss/_variables";
+@import "assets/scss/_mixins";
+@import "assets/scss/_global";
 
 html, body {
   height: 100%;

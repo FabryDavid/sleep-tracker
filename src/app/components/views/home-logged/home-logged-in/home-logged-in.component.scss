@@ -13,14 +13,3 @@
 .mat-button-toggle-group {
   @include panel;
 }
-
-.times-chart {
-  @include panel;
-  height: fit-content;
-
-  ::ng-deep .ngx-charts {
-    text {
-      fill: #fff !important;
-    }
-  }
-}

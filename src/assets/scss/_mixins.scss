@@ -1,4 +1,7 @@
 @import "variables";
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
 
 @mixin button {
   font-size: 18px;
@@ -6,20 +9,25 @@
   color: white;
   font-weight: 700;
   text-decoration: none;
-  width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 35px;
   line-height: 23px;
   border-radius: 15px;
   transition: all 0.15s;
   height: 70px;
+  min-width: 120px;
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
   position: relative;
   outline: none;
   border: 2px solid $accent;
+
+  @include media-breakpoint-down(sm) {
+    height: 55px;
+    min-width: 100px;
+  }
 
   &:disabled {
     opacity: 0.65;

@@ -1,0 +1,17 @@
+@import "src/assets/scss/variables";
+@import "src/assets/scss/mixins";
+
+.sleep-times-chart {
+  @include panel;
+
+  min-height: 300px;
+  height: fit-content;
+  padding-top: 25px;
+  padding-right: 25px;
+
+  ::ng-deep .ngx-charts {
+    text {
+      fill: #fff !important;
+    }
+  }
+}

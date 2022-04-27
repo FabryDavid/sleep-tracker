@@ -3,12 +3,12 @@
 
   <app-timer></app-timer>
 
-  <div class="row mt-5 px-0 w-100">
-    <div class="col-5">
+  <div class="row mt-5 px-0">
+    <div class="col-12 col-lg-5">
       <app-add-time></app-add-time>
     </div>
-    <div class="col-7">
-      <app-sleep-times></app-sleep-times>
+    <div class="col-12 col-lg-7">
+      <app-sleep-times (update)="loadSleepTimes()"></app-sleep-times>
     </div>
   </div>
 
@@ -20,21 +20,21 @@
     </mat-button-toggle-group>
   </div>
 
-  <div class="mt-5 row align-items-center justify-content-center">
-    <div class="col-4">
+  <div class="mt-4 mt-md-5 row align-items-center justify-content-center">
+    <div class="col-12 col-md-6">
       <app-avg-sleep-panel [times]="sleepTimes"></app-avg-sleep-panel>
     </div>
-    <div class="col-4">
+    <div class="col-12 col-md-6 mt-4 m-md-0">
       <app-total-sleep-panel [times]="sleepTimes"></app-total-sleep-panel>
     </div>
   </div>
 
-  <div class="row mt-5 justify-content-between">
-    <div class="col-5">
+  <div class="mt-4 mt-md-5 row justify-content-between">
+    <div class="col-12 col-md-6">
       <app-sleep-times-table [times]="sleepTimes"></app-sleep-times-table>
     </div>
 
-    <div class="col-6 times-chart pe-5 ps-4 py-4">
+    <div class="col-12 col-md-6 mt-4 mt-md-0">
       <app-sleep-times-chart [chartValues]="chartValues" [filterState]="timeFilter"></app-sleep-times-chart>
     </div>
   </div>
