@@ -103,14 +103,22 @@ export class HomeLoggedInComponent implements OnInit {
         }
 
         const nameIndex = chartData.filter((x) => x.name === name).map((x) => x.name).indexOf(name)
+
+        const sleptValue = st.getSleptTime().valueOf()
+
         if (nameIndex === -1) {
           chartData.push({
             name: name,
-            value: st.getSleptTime()
+            value: sleptValue
           })
         } else {
-          chartData[nameIndex].value.add(st.getSleptTime())
+          chartData[nameIndex].value += sleptValue
         }
+
+        console.log(st)
+        console.log(st.getSleptTime())
+        console.log(sleptValue)
+        console.log('========')
       })
 
       this.sleepTimes = sleepTimes
@@ -120,6 +128,9 @@ export class HomeLoggedInComponent implements OnInit {
           series: chartData.reverse(),
         },
       ]
+
+      console.log('Sleep times:')
+      console.table(chartData.reverse())
     })
   }
 }
