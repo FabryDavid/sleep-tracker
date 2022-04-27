@@ -33,6 +33,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {LineChartModule} from "@swimlane/ngx-charts";
+import {DurationFormatPipe} from './pipes/duration-format.pipe';
 
 @NgModule({
   declarations: [
@@ -51,27 +53,29 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     SleepTimePanelComponent,
     AvgSleepPanelComponent,
     TotalSleepPanelComponent,
+    DurationFormatPipe,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatIconModule,
-        FormsModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        NgxMaterialTimepickerModule,
-        MatExpansionModule,
-        HttpClientModule,
-        MatButtonToggleModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatTableModule,
-        MatPaginatorModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    FormsModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    NgxMaterialTimepickerModule,
+    MatExpansionModule,
+    HttpClientModule,
+    MatButtonToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    LineChartModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

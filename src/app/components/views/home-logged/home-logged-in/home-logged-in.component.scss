@@ -30,10 +30,15 @@
       border-bottom-color: rgba(255, 255, 255, 0.26);
     }
   }
+}
 
-  .paginator {
-    .mat-button-disabled {
-      color: rgba(255, 255, 255, 0.26);
+.times-chart {
+  @include panel;
+  height: fit-content;
+
+  ::ng-deep .ngx-charts {
+    text {
+      fill: #fff !important;
     }
   }
 }

@@ -1,11 +1,12 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SleepTimeService} from "../../../../services/sleep-time.service";
 import {LocalStorageWorker} from "../../../../classes/localstorage-worker/local-storage-worker.class";
 import {SleepTime} from "../../../../classes/sleep-time/sleep-time.Class";
 import {RequestFilter} from "../../../../classes/request-filter/request-filter.Class";
 import {RequestFilterOption} from "../../../../classes/request-filter-option/request-filter-option.Class";
 import {TimeFilterEnum} from "../../../../enums/time-filter-enum.Enum";
-import {MatPaginator} from "@angular/material/paginator";
+import {ChartData} from "../../../../classes/chart-data/chart-data.Class";
+import durationFormatter from "../../../../helpers/durationFormatter";
 
 @Component({
   selector: 'app-home-logged-in',
@@ -15,8 +16,6 @@ import {MatPaginator} from "@angular/material/paginator";
 export class HomeLoggedInComponent implements OnInit {
   timeFilter: TimeFilterEnum = TimeFilterEnum.last7days
   sleepTimes: SleepTime[] = []
-  requestPage = 0
-  requestLimit = 10
   currentUserId: string | null = null
   columns = [
     {
@@ -31,8 +30,11 @@ export class HomeLoggedInComponent implements OnInit {
     },
   ];
   displayedColumns = this.columns.map(c => c.columnDef);
-  timesLength = 0
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  // Chart
+  chartValues: Array<Object> = [];
+  xAxisLabel = 'Date'
+
 
   constructor(
     private localStorageWorker: LocalStorageWorker,
@@ -78,13 +80,6 @@ export class HomeLoggedInComponent implements OnInit {
   }
 
   timeFilterChange() {
-    this.requestPage = 1
-    this.paginator.pageIndex = 0;
-    this.loadSleepTimes()
-  }
-
-  setPage(pageEvent: any) {
-    this.requestPage = pageEvent.pageIndex + 1
     this.loadSleepTimes()
   }
 
@@ -118,21 +113,68 @@ export class HomeLoggedInComponent implements OnInit {
       new RequestFilterOption('startTime_gte', gteDate.toISOString()),
       new RequestFilterOption('startTime_lte', new Date().toISOString())
     ]
-    const options = new RequestFilter('wakeupTime', 'desc', this.requestPage, this.requestLimit, filterOptions)
+    const options = new RequestFilter('wakeupTime', 'asc', null, null, filterOptions)
 
     this.sleepTimeService.filterSleepTimes(this.currentUserId, options).subscribe((data) => {
       const items = data.body
-      const totalItems = data.headers.get('X-Total-Count')
       this.sleepTimes = items
 
       const sleepTimes: SleepTime[] = []
+      const chartData: Array<ChartData> = []
       items.forEach((item: SleepTime) => {
         const st = new SleepTime(new Date(item.startTime), new Date(item.wakeupTime), item.userId, new Date(item.addDate), item.id)
         sleepTimes.push(st)
+
+
+        let name: string;
+
+        switch (this.timeFilter) {
+          case TimeFilterEnum.last7days:
+            name = st.wakeupTime.toLocaleDateString('en-US', {
+              weekday: 'short'
+            })
+            this.xAxisLabel = 'Week Days'
+            break
+          case TimeFilterEnum.thisMonth:
+            name = st.wakeupTime.toLocaleDateString('en-US', {
+              day: '2-digit'
+            })
+            this.xAxisLabel = 'Days'
+            break
+          case TimeFilterEnum.thisYear:
+            name = st.wakeupTime.toLocaleDateString('en-US', {
+              month: 'short'
+            })
+            this.xAxisLabel = 'Months'
+            break
+          default:
+            name = st.wakeupTime.toLocaleDateString()
+            this.xAxisLabel = 'Date'
+            return;
+        }
+
+        const nameIndex = chartData.filter((x) => x.name === name).map((x) => x.name).indexOf(name)
+        if (nameIndex === -1) {
+          chartData.push({
+            name: name,
+            value: st.getSleptTime()
+          })
+        } else {
+          chartData[nameIndex].value.add(st.getSleptTime())
+        }
       })
 
       this.sleepTimes = sleepTimes
-      this.timesLength = totalItems
+      this.chartValues = [
+        {
+          name: "Slept time",
+          series: chartData,
+        },
+      ]
     })
+  }
+
+  formatAxis(val: number) {
+    return durationFormatter(val)
   }
 }

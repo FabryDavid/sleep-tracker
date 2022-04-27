@@ -1,14 +1,24 @@
 import {HttpParams} from "@angular/common/http";
 
 export class RequestOptions {
-  constructor(public sort: string, public order: string, public page: number, public limit: number) {
+  constructor(public sort: string, public order: string, public page: number | null, public limit: number | null) {
   }
 
   getOptions() {
-    return new HttpParams()
+    let params = new HttpParams()
       .set('_sort', this.sort)
       .set('_order', this.order)
-      .set('_page', this.page)
-      .set('_limit', this.limit)
+
+    if (this.page) {
+      params = params
+        .set('_page', this.page)
+    }
+
+    if (this.limit) {
+      params = params
+        .set('_limit', this.limit)
+    }
+
+    return params
   }
 }

@@ -29,8 +29,8 @@
     </div>
   </div>
 
-  <div class="row justify-content-center mt-5">
-    <div class="col-6 sleep-times-list">
+  <div class="row mt-5 justify-content-between">
+    <div class="col-5 sleep-times-list">
       <table mat-table [dataSource]="sleepTimes" class="w-100 times-table">
         <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
           <th mat-header-cell *matHeaderCellDef>
@@ -44,14 +44,36 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <mat-paginator
-        class="bg-transparent text-white paginator"
-        hidePageSize
-        [pageSize]="requestLimit"
-        [length]="timesLength"
-        aria-label="Select page of users"
-        (page)="setPage($event)"
-      ></mat-paginator>
+    </div>
+
+    <div class="col-6 times-chart pe-5 ps-4 py-4">
+      <div>
+        <ngx-charts-line-chart
+          [legend]="false"
+          [scheme]="'fire'"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [autoScale]="true"
+          [xAxis]="true"
+          [yAxis]="true"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="'Slept time'"
+          [timeline]="false"
+          [results]="chartValues"
+          [yAxisTickFormatting]="formatAxis"
+        >
+          <ng-template #tooltipTemplate let-model="model">
+            <div class="">
+              {{model.value|durationFormat}}
+            </div>
+          </ng-template>
+          <ng-template #seriesTooltipTemplate let-model="model">
+            <div class="">
+              {{model[0].value|durationFormat}}
+            </div>
+          </ng-template>
+        </ngx-charts-line-chart>
+      </div>
     </div>
   </div>
 </div>

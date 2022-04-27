@@ -3,7 +3,7 @@ import {RequestFilterOption} from "../request-filter-option/request-filter-optio
 import {HttpParams} from "@angular/common/http";
 
 export class RequestFilter extends RequestOptions {
-  constructor(public sort: string, public order: string, public page: number, public limit: number, public filterOptions: Array<RequestFilterOption>) {
+  constructor(public sort: string, public order: string, public page: number|null, public limit: number|null, public filterOptions: Array<RequestFilterOption>) {
     super(sort, order, page, limit);
   }
 
