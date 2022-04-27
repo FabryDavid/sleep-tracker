@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgxMaterialTimepickerTheme} from "ngx-material-timepicker";
 import {FormControl, Validators} from "@angular/forms";
 import {MyErrorStateMatcher} from "../../login/login.component";
@@ -12,6 +12,8 @@ import {addSleepTime} from "../../../../services/sleep-time-service";
   styleUrls: ['./add-time.component.scss']
 })
 export class AddTimeComponent implements OnInit {
+  @Output() timeAdded: EventEmitter<null> = new EventEmitter<null>()
+
   timepickerTheme: NgxMaterialTimepickerTheme = {
     container: {
       bodyBackgroundColor: '#2c0f83',
@@ -43,14 +45,12 @@ export class AddTimeComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('submit')
-
     const startTime = SleepTime.timeToDate(this.startTime)
     const wakeupTime = SleepTime.timeToDate(this.wakeupTime)
     const sleepTime = new SleepTime(startTime, wakeupTime, this.localStorageWorker.getCurrentUserId())
 
     addSleepTime(sleepTime).then((response) => {
-      console.log(response)
+      this.timeAdded.emit()
     })
   }
 }

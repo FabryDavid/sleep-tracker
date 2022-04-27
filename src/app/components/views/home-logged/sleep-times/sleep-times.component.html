@@ -1,6 +1,6 @@
 <h2 class="fw-bold mt-4 fs-1">Previous sleep times</h2>
 
 <div *ngFor="let time of sleepTimes">
-  <app-sleep-time-panel [sleepTime]="time" (update)="loadSleepTimes()"></app-sleep-time-panel>
+  <app-sleep-time-panel [sleepTime]="time" (update)="update.emit()"></app-sleep-time-panel>
 </div>
 

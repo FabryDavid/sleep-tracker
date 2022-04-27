@@ -5,10 +5,10 @@
 
   <div class="row mt-5 px-0">
     <div class="col-12 col-lg-5">
-      <app-add-time></app-add-time>
+      <app-add-time (timeAdded)="loadSleepTimes()"></app-add-time>
     </div>
     <div class="col-12 col-lg-7">
-      <app-sleep-times (update)="loadSleepTimes()"></app-sleep-times>
+      <app-sleep-times (update)="loadSleepTimes()" [sleepTimes]="sleepTimes.slice(0,4)"></app-sleep-times>
     </div>
   </div>
 
