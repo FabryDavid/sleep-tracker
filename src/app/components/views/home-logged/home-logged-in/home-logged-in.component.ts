@@ -67,7 +67,7 @@ export class HomeLoggedInComponent implements OnInit {
       new RequestFilterOption('startTime_gte', gteDate.toISOString()),
       new RequestFilterOption('startTime_lte', new Date().toISOString())
     ]
-    const options = new RequestFilter('wakeupTime', 'asc', null, null, filterOptions)
+    const options = new RequestFilter('wakeupTime', 'desc', null, null, filterOptions)
 
     this.sleepTimeService.filterSleepTimes(this.currentUserId, options).subscribe((data) => {
       const items = data.body

@@ -19,7 +19,7 @@ export class AvgSleepPanelComponent implements OnInit {
   get avgSleepTime() {
     let duration = 0;
     this.times.forEach((time) => {
-      duration = duration + moment.duration(time.getSleptTimeFormatted('HH:mm')).as('milliseconds')
+      duration = duration + time.getSleptTime().valueOf()
     })
 
     duration /= this.times.length

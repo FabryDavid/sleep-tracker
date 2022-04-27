@@ -1,6 +1,7 @@
 import {ISleepTime} from "../../interfaces/isleep-time.Interface";
 import * as moment from "moment";
 import {v4 as uuidv4} from 'uuid';
+import durationFormatter from "../../helpers/durationFormatter";
 
 export class SleepTime implements ISleepTime {
   constructor(
@@ -25,8 +26,8 @@ export class SleepTime implements ISleepTime {
     return moment(end.diff(start));
   }
 
-  getSleptTimeFormatted(format='HH:mm'): string {
-    return this.getSleptTime().format(format)
+  getSleptTimeFormatted(): string {
+    return durationFormatter(this.getSleptTime().valueOf())
   }
 
   static timeToDate(time: string): Date {

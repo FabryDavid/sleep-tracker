@@ -7,7 +7,7 @@ import {SleepTime} from "../../../../classes/sleep-time/sleep-time.Class";
   styleUrls: ['./sleep-times-table.component.scss']
 })
 export class SleepTimesTableComponent implements OnInit {
-  @Input() times:Array<SleepTime> = []
+  @Input() times: Array<SleepTime> = []
 
   columns = [
     {
@@ -18,7 +18,7 @@ export class SleepTimesTableComponent implements OnInit {
     {
       columnDef: 'amount',
       header: 'Amount',
-      cell: (element: SleepTime) => `${element.getSleptTime().format('HH:mm:ss')}`,
+      cell: (element: SleepTime) => `${element.getSleptTimeFormatted()}`,
     },
   ];
   displayedColumns = this.columns.map(c => c.columnDef);
