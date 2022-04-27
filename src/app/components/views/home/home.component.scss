@@ -20,7 +20,9 @@
   }
 
   a {
-  @include button;
+    @include button;
+    width: fit-content;
+    padding: 0 35px;
   }
 }
 

@@ -117,7 +117,7 @@ export class HomeLoggedInComponent implements OnInit {
       this.chartValues = [
         {
           name: "Slept time",
-          series: chartData,
+          series: chartData.reverse(),
         },
       ]
     })
