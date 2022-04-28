@@ -6,6 +6,8 @@ import {RequestFilter} from "../../../../classes/request-filter/request-filter.C
 import {RequestFilterOption} from "../../../../classes/request-filter-option/request-filter-option.Class";
 import {TimeFilterEnum} from "../../../../enums/time-filter-enum.Enum";
 import {ChartData} from "../../../../classes/chart-data/chart-data.Class";
+import {UserService} from "../../../../services/user.service";
+import {User} from "../../../../classes/user/user.Class";
 
 @Component({
   selector: 'app-home-logged-in',
@@ -21,6 +23,7 @@ export class HomeLoggedInComponent implements OnInit {
   constructor(
     private localStorageWorker: LocalStorageWorker,
     private sleepTimeService: SleepTimeService,
+    private userService: UserService
   ) {
     this.currentUserId = localStorageWorker.getCurrentUserId()
   }

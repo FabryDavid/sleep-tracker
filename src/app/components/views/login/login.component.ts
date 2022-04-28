@@ -4,6 +4,8 @@ import {FormControl, FormGroupDirective, NgForm, Validators} from "@angular/form
 import {LocalStorageWorker} from "../../../classes/localstorage-worker/local-storage-worker.class";
 import {User} from "../../../classes/user/user.Class";
 import {Router} from "@angular/router";
+import {LoginService} from "../../../services/login-service/login.service";
+import {UserService} from "../../../services/user.service";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -27,7 +29,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private localStorageWorker: LocalStorageWorker
+    private localStorageWorker: LocalStorageWorker,
+    private userService: UserService,
   ) {
   }
 
@@ -35,14 +38,20 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.localStorageWorker.loginUser(this.user).then((response) => {
-      if (response) {
-        this.router.navigate(['/home'])
+    this.userService.getUserByEmail(this.user.email).subscribe((data) => {
+      if (data && data.length === 1) {
+        const u = data[0]
+        console.log(u)
+        console.log(this.user)
+        if (u.email === this.user.email && u.password === this.user.password) {
+          this.localStorageWorker.loginUser(u)
+          this.router.navigate(['/home'])
+          return;
+        }
       }
-    }).catch((e: Error) => {
-      if (e.name === "IncorrectPasswordError") {
-        this.incorrectPassword = true
-      }
+
+      this.incorrectPassword = true
+      this.localStorageWorker.logoutUser()
     })
   }
 }
