@@ -40,6 +40,12 @@ export class SleepTimeService {
     )
   }
 
+  addSleepTime(sleepTime: ISleepTime) {
+    return this.http.post<ISleepTime>(`${this.apiUrl}/sleepTimes`, sleepTime).pipe(
+      catchError(this.handleError.bind(this))
+    )
+  }
+
   removeSleepTime(timeId: string) {
     return this.http.delete<Array<ISleepTime>>(`${this.apiUrl}/sleepTimes/${timeId}`,).pipe(
       catchError(this.handleError.bind(this))

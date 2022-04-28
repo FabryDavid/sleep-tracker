@@ -1,6 +1,11 @@
 <h2 class="fw-bold mt-4 fs-1">Previous sleep times</h2>
 
-<div *ngFor="let time of sleepTimes">
-  <app-sleep-time-panel [sleepTime]="time" (update)="update.emit()"></app-sleep-time-panel>
+<div *ngIf="sleepTimes.length>0, else noTime">
+  <div *ngFor="let time of sleepTimes">
+    <app-sleep-time-panel [sleepTime]="time" (update)="update.emit()"></app-sleep-time-panel>
+  </div>
 </div>
 
+<ng-template #noTime>
+  <h4>No sleep time added yet.</h4>
+</ng-template>

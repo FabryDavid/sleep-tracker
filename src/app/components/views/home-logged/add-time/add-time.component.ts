@@ -4,7 +4,7 @@ import {FormControl, Validators} from "@angular/forms";
 import {MyErrorStateMatcher} from "../../login/login.component";
 import {SleepTime} from "../../../../classes/sleep-time/sleep-time.Class";
 import {LocalStorageWorker} from "../../../../classes/localstorage-worker/local-storage-worker.class";
-import {addSleepTime} from "../../../../services/sleep-time-service";
+import {SleepTimeService} from "../../../../services/sleep-time.service";
 
 @Component({
   selector: 'app-add-time',
@@ -37,7 +37,8 @@ export class AddTimeComponent implements OnInit {
   wakeupTime = this.currentTime
 
   constructor(
-    private localStorageWorker: LocalStorageWorker
+    private localStorageWorker: LocalStorageWorker,
+    private sleepTimeService: SleepTimeService
   ) {
   }
 
@@ -47,9 +48,16 @@ export class AddTimeComponent implements OnInit {
   onSubmit() {
     const startTime = SleepTime.timeToDate(this.startTime)
     const wakeupTime = SleepTime.timeToDate(this.wakeupTime)
+
+    console.log({
+      startTime, wakeupTime
+    })
+
     const sleepTime = new SleepTime(startTime, wakeupTime, this.localStorageWorker.getCurrentUserId())
 
-    addSleepTime(sleepTime).then((response) => {
+    console.log(sleepTime)
+
+    this.sleepTimeService.addSleepTime(sleepTime).subscribe(() => {
       this.timeAdded.emit()
     })
   }

@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TimeFilterEnum} from "../../../../enums/time-filter-enum.Enum";
-import {ChartData} from "../../../../classes/chart-data/chart-data.Class";
 import durationFormatter from "../../../../helpers/durationFormatter";
 
 @Component({

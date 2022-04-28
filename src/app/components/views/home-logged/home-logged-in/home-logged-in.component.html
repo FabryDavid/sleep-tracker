@@ -1,7 +1,7 @@
 <div class="container main-top-margin">
   <h2 class="fw-bolder h1">Welcome</h2>
 
-  <app-timer></app-timer>
+  <app-timer (timeAdded)="loadSleepTimes()"></app-timer>
 
   <div class="row mt-5 px-0">
     <div class="col-12 col-lg-5">

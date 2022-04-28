@@ -84,6 +84,7 @@ export class HomeLoggedInComponent implements OnInit {
         switch (this.timeFilter) {
           case TimeFilterEnum.last7days:
             name = st.wakeupTime.toLocaleDateString('en-US', {
+              day: '2-digit',
               weekday: 'short'
             })
             break
@@ -102,8 +103,7 @@ export class HomeLoggedInComponent implements OnInit {
             return;
         }
 
-        const nameIndex = chartData.filter((x) => x.name === name).map((x) => x.name).indexOf(name)
-
+        const nameIndex = chartData.map((x) => x.name).indexOf(name)
         const sleptValue = st.getSleptTime().valueOf()
 
         if (nameIndex === -1) {
@@ -114,11 +114,6 @@ export class HomeLoggedInComponent implements OnInit {
         } else {
           chartData[nameIndex].value += sleptValue
         }
-
-        console.log(st)
-        console.log(st.getSleptTime())
-        console.log(sleptValue)
-        console.log('========')
       })
 
       this.sleepTimes = sleepTimes
@@ -128,9 +123,6 @@ export class HomeLoggedInComponent implements OnInit {
           series: chartData.reverse(),
         },
       ]
-
-      console.log('Sleep times:')
-      console.table(chartData.reverse())
     })
   }
 }

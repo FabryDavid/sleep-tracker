@@ -1,11 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {LocalStorageWorker} from "../../../../classes/localstorage-worker/local-storage-worker.class";
 import {ElapseTime} from "../../../../classes/elapsed-time/elapse-time.Class";
 import {interval, Subscription} from "rxjs";
 import {TimerService} from "../../../../services/timer-service/timer.service";
 import {tap} from "rxjs/operators";
-import {addSleepTime} from "../../../../services/sleep-time-service";
 import {SleepTime} from "../../../../classes/sleep-time/sleep-time.Class";
+import {SleepTimeService} from "../../../../services/sleep-time.service";
 
 @Component({
   selector: 'app-timer',
@@ -13,6 +13,8 @@ import {SleepTime} from "../../../../classes/sleep-time/sleep-time.Class";
   styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent implements OnInit, OnDestroy {
+  @Output() timeAdded: EventEmitter<null> = new EventEmitter<null>()
+
   timerStarted: Date | null = null
   timeElapsed = new ElapseTime(0, 0, 0, 0)
   source = interval(1000)
@@ -22,7 +24,8 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   constructor(
     private localStorageWorker: LocalStorageWorker,
-    private timerService: TimerService
+    private timerService: TimerService,
+    private sleepTimeService: SleepTimeService
   ) {
     this.timerStarted = this.localStorageWorker.getTimer()
     this.isStarted = !!this.timerStarted
@@ -85,8 +88,9 @@ export class TimerComponent implements OnInit, OnDestroy {
     if (this.timerStarted) {
       const now = new Date()
 
-      addSleepTime(new SleepTime(this.timerStarted, now, this.localStorageWorker.getCurrentUserId())).then((response) => {
-        console.log(response)
+      const sleepTime = new SleepTime(this.timerStarted, now, this.localStorageWorker.getCurrentUserId())
+      this.sleepTimeService.addSleepTime(sleepTime).subscribe(() => {
+        this.timeAdded.emit()
       })
     }
   }
